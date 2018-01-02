@@ -16,6 +16,7 @@ private:
 	int count;        //item counter
 public:
 	Queue(int = 7);
+	Queue(const Queue<T> &);
 	~Queue();
 
 

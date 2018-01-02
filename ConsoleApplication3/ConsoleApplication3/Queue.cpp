@@ -16,6 +16,17 @@ Queue<T>::Queue(int sizeQueue) : capacity(sizeQueue), head(0), tail(0), count(0)
 	queuePtr = new T[capacity];
 }
 
+// конструктор копии
+template<typename T>
+Queue<T>::Queue(const Queue &otherQueue) :
+	capacity(otherQueue.capacity), head(otherQueue.head),
+	tail(otherQueue.tail),queuePtr(new T[capacity]),
+	count(otherQueue.count)
+{
+	for (int i = 0; i < capacity; i++)
+		queuePtr[i] = otherQueue.queuePtr[i]; // копируем очередь
+}
+
 // деструктор
 template<typename T>
 Queue<T>::~Queue()

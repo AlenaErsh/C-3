@@ -53,80 +53,75 @@ template<typename T>
 void Menu(T q)
 {
 	int answ;
-
-	cout << "Work with the queue." << endl;
-	cout << "1)Add item to the queue" << endl
-		<< "2)Remove an item from the queue" << endl
-		<< "3)Find the item in the queue" << endl
-		<< "4)Print the queue" << endl
-		<< "5)Print the length of the queue" << endl
-		<< "6)Exit from work with the queue" << endl;
-	cin >> answ;
-	switch (answ)
+	do
 	{
-	case 1:
-	{
-		int el;
-		cout << "Enter item : ";
-		cin >> el;
-		try {
-			q.Enqueue(el);
-		}
-		catch (char *er) {
-			cout << "exception: " << er<<endl;
-			Menu(q);
+		cout << "Work with the queue." << endl;
+		cout << "1)Add item to the queue" << endl
+			<< "2)Remove an item from the queue" << endl
+			<< "3)Find the item in the queue" << endl
+			<< "4)Print the queue" << endl
+			<< "5)Print the length of the queue" << endl
+			<< "6)Exit from work with the queue" << endl;
+		cin >> answ;
+		switch (answ)
+		{
+		case 1:
+		{
+			int el;
+			cout << "Enter item : ";
+			cin >> el;
+			try {
+				q.Enqueue(el);
+			}
+			catch (char *er) {
+				cout << "exception: " << er << endl;
+				break;
+			}
+			cout << "Item added" << endl;
 			break;
 		}
-		cout << "Item added" << endl;
-		Menu(q);
-		break;
-	}
-	case 2:
-	{
-		try {
-			q.Dequeue();
-		}
-		catch (char *er) {
-			cout << "exeption: " << er << endl;
-			Menu(q);
+		case 2:
+		{
+			try {
+				q.Dequeue();
+			}
+			catch (char *er) {
+				cout << "exeption: " << er << endl;
+				break;
+			}
+			cout << "Removed" << endl;
 			break;
 		}
-		cout << "Removed" << endl;
-		Menu(q);
-		break;
-	}
-	case 3:
-	{
-		int find;
-		cout << "What element are we looking for in the queue ? " << endl;
-		cin >> find;
-		bool resContains;
-		try {
-			resContains = q.Contains(find);
+		case 3:
+		{
+			int find;
+			cout << "What element are we looking for in the queue ? " << endl;
+			cin >> find;
+			bool resContains;
+			try {
+				resContains = q.Contains(find);
+			}
+			catch (char *er) {
+				cout << "exeption: " << er << endl;
+			}
+			char* s = (resContains == 1) ? "true" : "false";
+			cout << find << " in queue: " << s << endl;
+			break;
 		}
-		catch (char *er) {
-			cout << "exeption: " << er<<endl;
+		case 4:
+		{
+			q.PrintQueue();
+			break;
 		}
-		char* s = (resContains == 1) ? "true" : "false";
-		cout << find << " in queue: " << s << endl;
-		Menu(q);
-		break;
-	}
-	case 4:
-	{
-		q.PrintQueue();
-		Menu(q);
-		break;
-	}
-	case 5:
-	{
-		cout << "Length of the queue : " << q.Length() << endl;
-		Menu(q);
-		break;
-	}
-	default:
-		break;
-	}
+		case 5:
+		{
+			cout << "Length of the queue : " << q.Length() << endl;
+			break;
+		}
+		default:
+			break;
+		}
+	} while (answ < 6);
 }
 
 template<typename T>
